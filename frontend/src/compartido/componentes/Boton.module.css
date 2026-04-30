@@ -1,0 +1,90 @@
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--esp-2);
+  font-weight: var(--peso-medio);
+  border-radius: var(--radio-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    background-color var(--transicion-rapida),
+    border-color var(--transicion-rapida),
+    color var(--transicion-rapida),
+    box-shadow var(--transicion-rapida);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.boton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Variantes ───────────────────────────────────────────────────────────── */
+
+.primario {
+  background-color: var(--color-primario-600);
+  color: white;
+  border-color: var(--color-primario-600);
+}
+.primario:hover:not(:disabled) {
+  background-color: var(--color-primario-700);
+  border-color: var(--color-primario-700);
+}
+.primario:focus-visible {
+  box-shadow: 0 0 0 3px var(--color-primario-200);
+  outline: none;
+}
+
+.secundario {
+  background-color: var(--color-neutral-0);
+  color: var(--color-neutral-700);
+  border-color: var(--color-borde);
+}
+.secundario:hover:not(:disabled) {
+  background-color: var(--color-neutral-50);
+  border-color: var(--color-neutral-300);
+}
+
+.peligro {
+  background-color: var(--color-peligro-600);
+  color: white;
+  border-color: var(--color-peligro-600);
+}
+.peligro:hover:not(:disabled) {
+  background-color: var(--color-peligro-700);
+}
+
+.fantasma {
+  background-color: transparent;
+  color: var(--color-primario-600);
+  border-color: transparent;
+}
+.fantasma:hover:not(:disabled) {
+  background-color: var(--color-primario-50);
+}
+
+/* ── Tamaños ─────────────────────────────────────────────────────────────── */
+
+.sm {
+  padding: var(--esp-1) var(--esp-3);
+  font-size: var(--tam-fuente-sm);
+}
+
+.md {
+  padding: var(--esp-2) var(--esp-4);
+  font-size: var(--tam-fuente-sm);
+}
+
+.lg {
+  padding: var(--esp-3) var(--esp-6);
+  font-size: var(--tam-fuente-base);
+}
+
+.icono {
+  display: flex;
+  align-items: center;
+  font-size: 1em;
+}

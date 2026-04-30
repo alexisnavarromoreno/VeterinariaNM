@@ -1,0 +1,50 @@
+.alerta {
+  display: flex;
+  gap: var(--esp-3);
+  padding: var(--esp-3) var(--esp-4);
+  border-radius: var(--radio-md);
+  border-left: 4px solid;
+}
+
+.icono {
+  font-size: var(--tam-fuente-lg);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.titulo {
+  font-weight: var(--peso-semibold);
+  font-size: var(--tam-fuente-sm);
+  margin-bottom: var(--esp-1);
+}
+
+.cuerpo {
+  font-size: var(--tam-fuente-sm);
+  line-height: var(--altura-linea-normal);
+}
+
+/* ── Variantes semánticas ────────────────────────────────────────────────── */
+
+.critica {
+  background-color: var(--color-peligro-50);
+  border-color: var(--color-peligro-500);
+  color: var(--color-peligro-700);
+}
+
+.advertencia {
+  background-color: var(--color-alerta-50);
+  border-color: var(--color-alerta-500);
+  color: var(--color-alerta-700);
+}
+
+.info {
+  background-color: var(--color-primario-50);
+  border-color: var(--color-primario-500);
+  color: var(--color-primario-700);
+}
+
+.exito {
+  background-color: var(--color-acento-50);
+  border-color: var(--color-acento-500);
+  color: var(--color-acento-700);
+}
