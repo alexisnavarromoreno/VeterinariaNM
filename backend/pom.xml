@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.5</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.veterinaria</groupId>
+    <artifactId>veterinaria-nm</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>VeterinariaNM</name>
+    <description>Sistema de gestión para clínica veterinaria - Arquitectura Hexagonal</description>
+
+    <properties>
+        <java.version>21</java.version>
+        <jjwt.version>0.12.5</jjwt.version>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <lombok.version>1.18.32</lombok.version>
+    </properties>
+
+    <dependencies>
+
+        <!-- ===== NÚCLEO WEB =====
+             Proporciona el servidor embebido (Tomcat) y soporte REST.
+             Es el adaptador de entrada HTTP principal de la arquitectura hexagonal. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- ===== SEGURIDAD =====
+             Gestión de autenticación y autorización.
+             Se integra con JWT para stateless authentication en APIs REST. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!-- ===== PERSISTENCIA JPA =====
+             Abstracción de acceso a datos mediante JPA/Hibernate.
+             Los repositorios JPA actúan como adaptadores de salida en la arquitectura hexagonal. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- ===== VALIDACIÓN =====
+             Bean Validation (JSR-380) para validar DTOs en la capa de adaptadores.
+             Evita que datos inválidos lleguen al dominio. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <!-- ===== POSTGRESQL =====
+             Driver JDBC para PostgreSQL en tiempo de ejecución.
+             La BD relacional se eligió por la naturaleza estructurada del dominio veterinario. -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- ===== JWT — API =====
+             API estándar para generación y validación de tokens JWT.
+             Habilita autenticación stateless, eliminando sesiones del servidor. -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>${jjwt.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>${jjwt.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- ===== LOMBOK =====
+             Reducción de boilerplate (getters, setters, constructores, builders).
+             Solo aplica en dominio/DTOs; NO en entidades JPA para evitar problemas de lazy loading. -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- ===== MAPSTRUCT =====
+             Mapeo entre entidades de dominio, entidades JPA y DTOs en tiempo de compilación.
+             Garantiza que las capas no se mezclen y el mapeo sea explícito y seguro. -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>${mapstruct.version}</version>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- ===== TESTS =====
+             JUnit 5 + Mockito + Spring Test para pruebas unitarias e integración.
+             Esencial para validar casos de uso del dominio de forma aislada. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <!-- Procesador de anotaciones: MapStruct + Lombok deben cooperar en este orden -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${mapstruct.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

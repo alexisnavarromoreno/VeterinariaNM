@@ -1,16 +1,5 @@
-# Compiled class file
+# ── Java / Maven ──────────────────────────────────────────────────────────────
 *.class
-
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
 *.jar
 *.war
 *.nar
@@ -18,7 +7,33 @@
 *.zip
 *.tar.gz
 *.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+target/
+.mtj.tmp/
 hs_err_pid*
 replay_pid*
+
+# ── IDE ───────────────────────────────────────────────────────────────────────
+.idea/
+*.iml
+*.ctxt
+.vscode/
+*.swp
+
+# ── Node / Frontend ───────────────────────────────────────────────────────────
+node_modules/
+dist/
+.vite/
+*.local
+
+# ── Entorno (NUNCA en repositorio) ────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+
+# ── OS ────────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Logs ──────────────────────────────────────────────────────────────────────
+*.log
+logs/

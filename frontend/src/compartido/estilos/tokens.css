@@ -1,0 +1,119 @@
+/**
+ * Design Tokens — VeterinariaNM
+ * =========================================================
+ * Fuente única de verdad para colores, tipografía y espaciado.
+ * Todos los componentes deben referenciar estas variables.
+ * Cambiar un token aquí actualiza toda la UI.
+ *
+ * Paleta elegida: azul médico profesional como color primario,
+ * verde salud como acento, neutrales grises para texto y fondos.
+ * El amarillo y rojo se reservan para estados de alerta clínica.
+ * =========================================================
+ */
+
+:root {
+  /* ── Colores primarios ─────────────────────────────────────────────────── */
+  --color-primario-50:    #eff6ff;
+  --color-primario-100:   #dbeafe;
+  --color-primario-200:   #bfdbfe;
+  --color-primario-300:   #93c5fd;
+  --color-primario-500:   #3b82f6;
+  --color-primario-600:   #2563eb;   /* Principal: botones, links, activo */
+  --color-primario-700:   #1d4ed8;
+  --color-primario-900:   #1e3a8a;
+
+  /* ── Color acento (salud, éxito) ───────────────────────────────────────── */
+  --color-acento-50:      #f0fdf4;
+  --color-acento-100:     #dcfce7;
+  --color-acento-500:     #22c55e;
+  --color-acento-600:     #16a34a;   /* Éxito, completado, activo */
+  --color-acento-700:     #15803d;
+
+  /* ── Alertas clínicas ─────────────────────────────────────────────────── */
+  --color-alerta-50:      #fffbeb;
+  --color-alerta-200:     #fde68a;
+  --color-alerta-500:     #f59e0b;   /* Advertencia: pendiente, por confirmar */
+  --color-alerta-700:     #b45309;
+
+  --color-peligro-50:     #fef2f2;
+  --color-peligro-200:    #fecaca;
+  --color-peligro-500:    #ef4444;   /* Error, cancelado, alergia grave */
+  --color-peligro-600:    #dc2626;
+  --color-peligro-700:    #b91c1c;
+
+  /* ── Neutrales ────────────────────────────────────────────────────────── */
+  --color-neutral-0:      #ffffff;
+  --color-neutral-50:     #f8fafc;
+  --color-neutral-100:    #f1f5f9;
+  --color-neutral-200:    #e2e8f0;
+  --color-neutral-300:    #cbd5e1;
+  --color-neutral-400:    #94a3b8;
+  --color-neutral-500:    #64748b;
+  --color-neutral-600:    #475569;
+  --color-neutral-700:    #334155;
+  --color-neutral-800:    #1e293b;
+  --color-neutral-900:    #0f172a;
+
+  /* ── Superficie y fondo ───────────────────────────────────────────────── */
+  --color-fondo-app:      var(--color-neutral-50);
+  --color-fondo-tarjeta:  var(--color-neutral-0);
+  --color-fondo-sidebar:  var(--color-neutral-900);
+  --color-borde:          var(--color-neutral-200);
+
+  /* ── Tipografía ───────────────────────────────────────────────────────── */
+  --fuente-base:          'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --fuente-mono:          'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  --tam-fuente-xs:        0.75rem;    /* 12px */
+  --tam-fuente-sm:        0.875rem;   /* 14px */
+  --tam-fuente-base:      1rem;       /* 16px */
+  --tam-fuente-lg:        1.125rem;   /* 18px */
+  --tam-fuente-xl:        1.25rem;    /* 20px */
+  --tam-fuente-2xl:       1.5rem;     /* 24px */
+  --tam-fuente-3xl:       1.875rem;   /* 30px */
+
+  --peso-normal:          400;
+  --peso-medio:           500;
+  --peso-semibold:        600;
+  --peso-bold:            700;
+
+  --altura-linea-ajustada: 1.25;
+  --altura-linea-normal:   1.5;
+  --altura-linea-relajada: 1.75;
+
+  /* ── Espaciado (escala 4px) ───────────────────────────────────────────── */
+  --esp-1:   0.25rem;   /* 4px */
+  --esp-2:   0.5rem;    /* 8px */
+  --esp-3:   0.75rem;   /* 12px */
+  --esp-4:   1rem;      /* 16px */
+  --esp-5:   1.25rem;   /* 20px */
+  --esp-6:   1.5rem;    /* 24px */
+  --esp-8:   2rem;      /* 32px */
+  --esp-10:  2.5rem;    /* 40px */
+  --esp-12:  3rem;      /* 48px */
+  --esp-16:  4rem;      /* 64px */
+  --esp-20:  5rem;      /* 80px */
+
+  /* ── Bordes y radios ─────────────────────────────────────────────────── */
+  --radio-sm:   0.25rem;   /* 4px */
+  --radio-md:   0.5rem;    /* 8px */
+  --radio-lg:   0.75rem;   /* 12px */
+  --radio-xl:   1rem;      /* 16px */
+  --radio-full: 9999px;    /* Pill / circular */
+
+  /* ── Sombras ──────────────────────────────────────────────────────────── */
+  --sombra-sm:  0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --sombra-md:  0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --sombra-lg:  0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --sombra-xl:  0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* ── Transiciones ─────────────────────────────────────────────────────── */
+  --transicion-rapida:  150ms ease;
+  --transicion-normal:  250ms ease;
+  --transicion-lenta:   350ms ease;
+
+  /* ── Layout ───────────────────────────────────────────────────────────── */
+  --ancho-sidebar:       240px;
+  --alto-topbar:         64px;
+  --ancho-max-contenido: 1280px;
+}

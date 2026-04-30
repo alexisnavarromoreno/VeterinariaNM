@@ -1,0 +1,121 @@
+@import './tokens.css';
+
+/* ── Reset y base ─────────────────────────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--fuente-base);
+  font-size: var(--tam-fuente-base);
+  line-height: var(--altura-linea-normal);
+  color: var(--color-neutral-800);
+  background-color: var(--color-fondo-app);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Tipografía ───────────────────────────────────────────────────────────── */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: var(--altura-linea-ajustada);
+  font-weight: var(--peso-semibold);
+  color: var(--color-neutral-900);
+}
+
+h1 { font-size: var(--tam-fuente-3xl); }
+h2 { font-size: var(--tam-fuente-2xl); }
+h3 { font-size: var(--tam-fuente-xl); }
+h4 { font-size: var(--tam-fuente-lg); }
+
+p { line-height: var(--altura-linea-relajada); }
+
+a {
+  color: var(--color-primario-600);
+  text-decoration: none;
+  transition: color var(--transicion-rapida);
+}
+a:hover { color: var(--color-primario-700); }
+
+/* ── Formularios ──────────────────────────────────────────────────────────── */
+
+input, select, textarea, button {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: var(--esp-2) var(--esp-3);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-md);
+  color: var(--color-neutral-800);
+  background-color: var(--color-neutral-0);
+  transition: border-color var(--transicion-rapida), box-shadow var(--transicion-rapida);
+  outline: none;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--color-primario-500);
+  box-shadow: 0 0 0 3px var(--color-primario-100);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--color-neutral-400);
+}
+
+/* ── Utilidades ───────────────────────────────────────────────────────────── */
+
+.texto-truncado {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.solo-lector {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* ── Estados de carga ─────────────────────────────────────────────────────── */
+
+@keyframes girar {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes parpadear {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.esqueleto {
+  background: linear-gradient(
+    90deg,
+    var(--color-neutral-200) 25%,
+    var(--color-neutral-100) 50%,
+    var(--color-neutral-200) 75%
+  );
+  background-size: 200% 100%;
+  animation: deslizar-esqueleto 1.5s infinite;
+  border-radius: var(--radio-md);
+}
+
+@keyframes deslizar-esqueleto {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

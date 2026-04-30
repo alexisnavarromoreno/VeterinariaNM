@@ -1,0 +1,62 @@
+.pagina {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-primario-900) 0%, var(--color-primario-700) 100%);
+  padding: var(--esp-4);
+}
+
+.tarjeta {
+  background: var(--color-neutral-0);
+  border-radius: var(--radio-xl);
+  padding: var(--esp-10) var(--esp-8);
+  width: 100%;
+  max-width: 420px;
+  box-shadow: var(--sombra-xl);
+}
+
+.cabecera {
+  text-align: center;
+  margin-bottom: var(--esp-8);
+}
+
+.logo {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: var(--esp-3);
+}
+
+.titulo {
+  font-size: var(--tam-fuente-2xl);
+  color: var(--color-neutral-900);
+  margin-bottom: var(--esp-1);
+}
+
+.subtitulo {
+  color: var(--color-neutral-500);
+  font-size: var(--tam-fuente-sm);
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-5);
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-1);
+}
+
+.campo label {
+  font-size: var(--tam-fuente-sm);
+  font-weight: var(--peso-medio);
+  color: var(--color-neutral-700);
+}
+
+.botonLogin {
+  width: 100%;
+  margin-top: var(--esp-2);
+}

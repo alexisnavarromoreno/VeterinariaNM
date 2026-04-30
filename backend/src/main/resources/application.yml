@@ -1,0 +1,76 @@
+spring:
+  application:
+    name: veterinaria-nm
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/veterinaria_nm
+    username: ${DB_USUARIO:veterinaria_user}
+    password: ${DB_PASSWORD:veterinaria_pass}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    open-in-view: false  # Evita lazy loading en la capa web
+
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      write-dates-as-timestamps: false
+    deserialization:
+      fail-on-unknown-properties: false
+
+# ── Configuración JWT ────────────────────────────────────────────────────────
+veterinaria:
+  jwt:
+    # Clave mínima 256 bits (32 bytes) para HS256. NUNCA poner en código fuente.
+    secreto: ${JWT_SECRETO:c2VjcmV0by1kZS1kZXNhcnJvbGxvLW5vLXVzYXItZW4tcHJvZHVjY2lvbg==}
+    # 8 horas en milisegundos (jornada laboral clínica)
+    expiracion-ms: 28800000
+
+# ── Actuator (health check para infraestructura) ─────────────────────────────
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+
+# ── Logging ──────────────────────────────────────────────────────────────────
+logging:
+  level:
+    com.veterinaria.nm: INFO
+    org.springframework.security: WARN
+    org.hibernate.SQL: WARN
+
+---
+# ── Perfil de desarrollo ──────────────────────────────────────────────────────
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/veterinaria_nm_dev
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop  # Recrear esquema en cada arranque en dev
+    show-sql: true
+
+logging:
+  level:
+    com.veterinaria.nm: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
