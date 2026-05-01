@@ -3,26 +3,26 @@ package com.veterinaria.nm.dominio.modelo.valor;
 import java.util.Objects;
 
 /**
- * Value Object que representa una dirección postal.
+ * Value Object que representa una dirección postal española.
  * <p>
  * Al ser inmutable y sin identidad propia, se modela como Record.
- * Dos direcciones iguales en contenido son consideradas el mismo valor.
+ * La provincia se tipifica como {@link Provincia} para garantizar que
+ * solo se aceptan las 52 provincias españolas válidas.
  * </p>
  *
  * @param calle        Nombre de la calle o vía
  * @param numero       Número del portal (puede incluir piso, letra)
  * @param ciudad       Ciudad de residencia
- * @param provincia    Provincia o comunidad autónoma
+ * @param provincia    Provincia española (enum cerrado, 52 valores)
  * @param codigoPostal CP de 5 dígitos en España
  */
 public record Direccion(
         String calle,
         String numero,
         String ciudad,
-        String provincia,
+        Provincia provincia,
         String codigoPostal
 ) {
-    /** Validación compacta ejecutada en la construcción del record. */
     public Direccion {
         Objects.requireNonNull(calle, "La calle es obligatoria");
         Objects.requireNonNull(ciudad, "La ciudad es obligatoria");
@@ -31,8 +31,8 @@ public record Direccion(
         }
     }
 
-    /** Representación legible para mostrar en UI o documentos. */
     public String formatoCompleto() {
-        return String.format("%s %s, %s %s (%s)", calle, numero, codigoPostal, ciudad, provincia);
+        String prov = provincia != null ? provincia.getNombre() : "";
+        return String.format("%s %s, %s %s (%s)", calle, numero, codigoPostal, ciudad, prov);
     }
 }

@@ -105,10 +105,6 @@
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-database-postgresql</artifactId>
-        </dependency>
 
         <!-- ===== MAPSTRUCT =====
              Mapeo entre entidades de dominio, entidades JPA y DTOs en tiempo de compilación.
