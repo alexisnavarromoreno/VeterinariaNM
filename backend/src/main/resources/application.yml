@@ -20,7 +20,12 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
-    open-in-view: false  # Evita lazy loading en la capa web
+    open-in-view: false
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
 
   jackson:
     default-property-inclusion: non_null
@@ -64,9 +69,12 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/veterinaria_nm_dev
 
+  flyway:
+    enabled: false  # En dev Hibernate crea el esquema desde las entidades JPA
+
   jpa:
     hibernate:
-      ddl-auto: create-drop  # Recrear esquema en cada arranque en dev
+      ddl-auto: create-drop
     show-sql: true
 
 logging:

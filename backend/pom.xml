@@ -98,6 +98,18 @@
             <optional>true</optional>
         </dependency>
 
+        <!-- ===== FLYWAY =====
+             Migraciones SQL versionadas. En dev está deshabilitado (Hibernate crea el esquema).
+             En producción gestiona los cambios de esquema de forma controlada. -->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-database-postgresql</artifactId>
+        </dependency>
+
         <!-- ===== MAPSTRUCT =====
              Mapeo entre entidades de dominio, entidades JPA y DTOs en tiempo de compilación.
              Garantiza que las capas no se mezclen y el mapeo sea explícito y seguro. -->
